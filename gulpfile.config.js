@@ -4,7 +4,7 @@ var config = function () {
     this.dist = './dist/';
     this.mainFileName = 'main';
     this.outputPath = this.dist + 'app/';
-    this.tsFiles = [this.src + '**/**/*.ts', this.src + '*.ts'];
+    this.tsFiles = [this.src + '**/**/*.ts', this.src + '**/*.ts', this.src + '*.ts'];
     this.dtsFiles = './typings/**/*.d.ts';
     
     this.systemJs = {

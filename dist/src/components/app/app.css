@@ -1,0 +1,120 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+a, a:hover, a:active {
+    outline: none;
+    color: inherit;
+}
+
+app {
+    background-color: rgb(206, 211, 211);
+}
+
+content {
+    display: inline-block;
+    width: 100%;
+    padding-top: 5rem;
+}
+
+content md-content {
+    background-color: inherit;
+    color: inherit;
+}
+
+.one {
+    background-color: rgb(0, 162, 184) !important;
+    color: white !important;
+}
+
+.two {
+    background-color: rgb(206, 211, 211) !important;
+    color: rgb(44, 58, 68) !important;
+}
+
+.subtitle::before {
+    content: "+ ";
+}
+
+.info-view {
+    max-width: 900px;
+}
+
+.line-table {
+    margin-left: 2rem;
+}
+
+.line-table tr {
+    line-height: 2rem;
+}
+
+.line-table tr td {
+    font-weight: bold;
+    border-bottom: 2px dotted rgb(106, 199, 212);
+}
+
+.line-table .label {
+    width: 10rem;
+}
+
+.time-label {
+    background-color: rgb(197, 201, 201);
+    font-style: italic;
+    border-radius: 0.5rem;
+    border: 0.5rem solid rgb(197, 201, 201);
+}
+
+.content-group {
+    flex: 33;
+    min-width: 15rem;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 24px;
+    }
+    .info-view {
+        flex: 18;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+    body {
+        font-size: 24px;
+    }
+    .info-view {
+        flex: 12;
+    }
+    .content-group {
+        flex: 50;
+        min-width: 20rem;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+    body {
+        font-size: 30px;
+    }
+    .info-view {
+        flex: 8;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1600px) {
+    body {
+        font-size: 36px;
+    }
+    .info-view {
+        width: 900px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    body {
+        font-size: 42px;
+    }
+    .info-view {
+        width: 900px;
+    }
+}

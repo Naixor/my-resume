@@ -7,7 +7,7 @@ const tslint = require('gulp-tslint');
 const sourcemaps = require('gulp-sourcemaps');
 const inject = require('gulp-inject');
 const connect = require('gulp-connect');
-const clean = require('gulp-clean');
+const del = require("del");
 const tsProject = ts.createProject('tsconfig.json');
 const Config = require('./gulpfile.config');
 
@@ -17,16 +17,15 @@ gulp.task('lint', () => {
     return gulp.src(config.tsFiles).pipe(tslint()).pipe(tslint.report('prose')); 
 });
 
-gulp.task('compile', () => {
-    let allTsFiles = config.tsFiles.concat(config.dtsFiles);
-    let tsResult = gulp.src(allTsFiles).pipe(sourcemaps.init()).pipe(ts(tsProject));
-    tsResult.dts.pipe(gulp.dest(config.outputPath));
-    return tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest(config.tsOutputPath));
+gulp.task('compile', ['clean'], () => {
+    let tsResult = gulp.src(config.tsFiles).pipe(sourcemaps.init()).pipe(ts(tsProject));
+    // tsResult.dts.pipe(gulp.dest(config.outputPath));
+    return tsResult.js.pipe(sourcemaps.write('.')).pipe(gulp.dest('dist/src'));
 });
 
 gulp.task("resources", () => {
     return gulp.src(["src/**/*", "!**/*.ts"])
-        .pipe(gulp.dest(config.outputPath));
+        .pipe(gulp.dest("dist/src"));
 });
 
 gulp.task("libs", () => {
@@ -68,8 +67,8 @@ gulp.task('dev', () => {
             .pipe(gulp.dest('./'));
 });
 
-gulp.task('clean', () => {
-   return gulp.src(config.dist, {read: false}).pipe(clean()); 
+gulp.task('clean', (cb) => {
+    return del(["dist"], cb);
 });
 
 gulp.task('connect', () => {
@@ -93,6 +92,6 @@ gulp.task('watch', () => {
 
 gulp.task('server', ['connect', 'watch']);
 
-gulp.task("build", ['clean', 'lint', 'compile', 'resources', 'libs'], () => {
+gulp.task("build", ['compile', 'resources', 'libs'], () => {
     console.log("Building the project ...");
 });
