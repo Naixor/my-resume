@@ -45,6 +45,7 @@ export class MagicImage {
     context: CanvasRenderingContext2D = null;
     image: HTMLImageElement = null;
     imageData: ImageData = null;
+    worker: Worker;
     @ViewChild('canvas') canvas: ElementRef;
     constructor(
         @Inject(Http) http,
@@ -60,6 +61,7 @@ export class MagicImage {
         this.width = width || 0;
         this.height = height || 0;
         this.className = `mimg-${type || 'default'}`;
+        this.worker = new Worker('src/components/magicImage/imageFilterWorker.js');
 
         let headers = new Headers();
         headers.append('Accept', 'image/webp,image/*,*/*;q=0.8');
@@ -74,7 +76,10 @@ export class MagicImage {
         this.httpObservable.subscribe((data: any) => {
             switch (data.state) {
                 case 'progress':
-                    console.log(data.response);
+                    this.context.font = "16px Verdana";
+                    this.context.fillStyle = "#FFF";
+                    this.context.textAlign = "center";
+                    this.context.fillText(data.response * 100 + '%', this.width/2, this.height/2);
                     break;
                 case 'loaded':
                     let blob = new Blob([data.response.blob()], {type: data.response.headers.get('Content-Type')});
@@ -90,9 +95,15 @@ export class MagicImage {
                         this.getImageData();
                         // CV.filter.Canny.process(this.imageData.data, this.imageData.width, this.imageData.height, 40, 20);
                         // CV.filter.DoG.process(this.imageData.data, this.imageData.width, this.imageData.height, 3, 3, 1, 0.6);
-                        CV.filter.Cartoon.process(this.imageData.data, this.imageData.width, this.imageData.height, 10, 15);
+                        // CV.filter.Cartoon.process(this.imageData.data, this.imageData.width, this.imageData.height, 10, 15);
                         // this.drawImage(this.image);
-                        this.putImageData();
+                        this.worker.postMessage(this.imageData);
+                        this.worker.onmessage = (event) => {
+                            console.log(1);
+                            this.imageData = event.data;
+                            this.putImageData();
+                        }
+                        this.putImageData();                        
                     };
                     img.src = url;
                     break;

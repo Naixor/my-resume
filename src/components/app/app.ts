@@ -135,6 +135,12 @@ fhECYwsI4VEAAAAASUVORK5CYII=`,
                         link: 'https://github.com/Naixor/hyswipe'
                     },
                     {
+                        title: '音频绘制',
+                        content: '看到百度手机音乐上的音频绘制挺有意思的，于是自己写了个canvas版本，最开始以为是sin波的，后来意识到是贝塞尔曲线',
+                        github: 'http://naixor.github.io/canvas/AudioMedia/',
+                        link: 'https://github.com/Naixor/AudioMedia'
+                    },
+                    {
                         title: 'cv.js',
                         content: '编写PageDiff时需要用到图片对比算法，加上本身对此很感兴趣，于是将自己的学习过程整理成此库。',
                         github: 'https://github.com/Naixor/cv',
@@ -156,7 +162,6 @@ fhECYwsI4VEAAAAASUVORK5CYII=`,
             }
         };
         this.experienceList = [[], [], []];
-        
         this.parttimeList = [[], [], []];
         this.pageData.info.parttime.forEach((exp, i) => {
             this.parttimeList[i%3].push(exp);

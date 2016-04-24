@@ -13,7 +13,6 @@ export class Header {
     constructor() {
     }
     ngOnInit() {
-        console.log(this.title, this.navItems);
     }
     getLink(str: string): string {
         return str.toLowerCase().replace(/\s/g, '-');
