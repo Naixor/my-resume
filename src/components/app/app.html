@@ -40,7 +40,7 @@
         <div class="info-view">
             <md-content layout="column">
                 <h1 id="work-experience" class="subtitle">WORK EXPERIENCE</h1>
-                <md-content class="" layout="row" layout-wrap layout-align="start start">
+                <md-content #waterFlow class="" layout="row" layout-wrap layout-align="start start">
                     <div class="content-group" layout="column" flex-xs="100" *ngFor="#experiences of experienceList">
                         <md-card *ngFor="#experience of experiences">
                             <md-card-title>
@@ -51,9 +51,15 @@
                             <md-card-actions layout="row" layout-align="end center">
                                 <span>{{experience.time}}</span>
                             </md-card-actions>
+                            <md-card-image *ngIf="experience.img">
+                                <img [src]="experience.img" alt="">
+                            </md-card-image>
                             <md-card-content>
                                 <p>{{experience.content}}</p>
                             </md-card-content>
+                            <md-card-actions layout="row" layout-align="end center">
+                                <span class="tag" *ngFor="#tag of experience.tags">{{tag}}</span>
+                            </md-card-actions>
                         </md-card>
                     </div>
                 </md-content>

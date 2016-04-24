@@ -70,6 +70,24 @@ content md-content {
     min-width: 15rem;
 }
 
+md-card-actions {
+    flex-wrap: wrap;
+}
+
+md-card-image {
+    width: 50%;
+    margin-left: 25%;
+}
+
+.tag {
+    font-style: italic;
+    font-size: 1rem;
+    background-color: rgb(106, 199, 212);
+    color: white;
+    border: .2rem solid rgb(106, 199, 212);
+    margin: .2rem 0 0 .2rem;
+}
+
 @media screen and (max-width: 600px) {
     body {
         font-size: 24px;
