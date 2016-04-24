@@ -1,0 +1,9 @@
+<div class="container">
+    <h1 class="header-title">{{title}}</h1>
+    <span flex></span>
+    <ul class="header-nav">
+        <li *ngFor="#item of items">
+            <a href="#{{getLink(item)}}">{{item}}</a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Style-Type" content="text/css"/>
+    <meta http-equiv="Content-Script-Type" content="text/javascript"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Naxior(Stormspirit)'s Resume</title>
+    <!-- stylesheets:css -->
+    <link rel="stylesheet" href="/node_modules/ng2-material/dist/ng2-material.css">
+    <link rel="stylesheet" href="/node_modules/ng2-material/dist/font.css">
+    <!-- endinject -->
+</head>
+<body>
+    <app>Loading...</app>
+</body>
+<!-- ng2initial:js -->
+<script src="/node_modules/es6-shim/es6-shim.min.js"></script>
+<script src="/node_modules/systemjs/dist/system-polyfills.js"></script>
+<script src="/node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+<script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+<script src="/node_modules/systemjs/dist/system.src.js"></script>
+<script src="/node_modules/rxjs/bundles/Rx.js"></script>
+<script src="/node_modules/angular2/bundles/angular2.dev.js"></script>
+<script src="/node_modules/angular2/bundles/http.dev.js"></script>
+<script src="/node_modules/angular2/bundles/router.dev.js"></script>
+<!-- endinject -->
+
+<!-- libs:js -->
+<script src="/src/libs/cv.min.js"></script>
+<!-- endinject -->
+
+<!-- inject:system:js -->
+<script>
+                    System.config({
+    baseUrl: './',
+    transpiler: 'typescript',
+    typescriptOptions: {
+        module: 'system',
+        resolveTypings: true,
+        emitDecoratorMetadata: true,
+        sourceMap: true,
+        inlineSourceMap: false  
+    },
+    packages: {        
+        'src': {
+            main: 'main.ts',
+            format: 'esm',
+            defaultExtension: 'ts'
+        },
+        'ng2-material': {
+            defaultExtension: 'js'
+        }
+    },
+    map: {
+        'typescript': './node_modules/typescript/lib/typescript.js',
+        'ng2-material': './node_modules/ng2-material'
+    }
+});
+System.import('./src/main').then(null, console.error.bind(console));
+                    </script>
+<!-- endinject -->
+
+<!-- pro:js -->
+<!-- endinject -->
+</html>
