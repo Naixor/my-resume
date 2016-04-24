@@ -79,7 +79,8 @@ export class MagicImage {
                     this.context.font = "16px Verdana";
                     this.context.fillStyle = "#FFF";
                     this.context.textAlign = "center";
-                    this.context.fillText(data.response * 100 + '%', this.width/2, this.height/2);
+                    this.context.fillText(+(+data.response).toFixed(2) * 100 + '%', this.width/2, this.height/2);
+                    this.context.clearRect(0, 0, this.width, this.height);
                     break;
                 case 'loaded':
                     let blob = new Blob([data.response.blob()], {type: data.response.headers.get('Content-Type')});
